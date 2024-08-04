@@ -17,13 +17,35 @@ if [ ! -f "$csv_file" ]; then
     exit 1
 fi
 
-# adding opening hypertext tags
+# adding opening hypertext tags and webapge title, unformatted bc its just the tags
 echo "<!DOCTYPE html><html><head><title>Birds of Palestine</title><body>" > "$output_html"
+# adding CSS style, preserved formatting bc this maximizes images to the window width (better for phones)
+echo "<style>
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .gallery img {
+            max-width: 100%;
+            height: auto;
+            margin: 10px;
+        }
+        .gallery a {
+            text-align: center;
+            flex: 1 0 100%;
+        }
+        @media (min-width: 768px) {
+            .gallery a {
+                flex: 1 0 45%;
+            }
+        }
+</style>" > "$output_html"
 
 # adding text, opening div for the images below
 echo "<h1>Birds of Palestine</h1>" >> "$output_html"
 echo "<p>All iNaturalist observations of birds in Palestine in the last year. Last updated August 1st 2024.</p><br>" >> "$output_html"
-echo "<div>" >> "$output_html"
+echo "<div class=\"gallery\">" >> "$output_html"
 
 # Reading inat data from CSV, skipping empty images and adding links the images
 awk -F ',' 'NR>1 && $14 != "" {print $13 "," $14}' "$csv_file" | while IFS=, read -r url image_url; do
