@@ -1,7 +1,27 @@
-<!DOCTYPE html><html><head><title>Birds of Palestine</title><body>
+<style>
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .gallery img {
+            max-width: 100%;
+            height: auto;
+            margin: 10px;
+        }
+        .gallery a {
+            text-align: center;
+            flex: 1 0 100%;
+        }
+        @media (min-width: 768px) {
+            .gallery a {
+                flex: 1 0 45%;
+            }
+        }
+</style>
 <h1>Birds of Palestine</h1>
 <p>All iNaturalist observations of birds in Palestine in the last year. Last updated August 1st 2024.</p><br>
-<div>
+<div class="gallery">
 <a href="https://www.inaturalist.org/observations/177012209"><img src="https://inaturalist-open-data.s3.amazonaws.com/photos/307810594/medium.jpg" alt="Image"></a>
 <a href="https://www.inaturalist.org/observations/177949079"><img src="https://inaturalist-open-data.s3.amazonaws.com/photos/309567455/medium.jpeg" alt="Image"></a>
 <a href="https://www.inaturalist.org/observations/178533813"><img src="https://static.inaturalist.org/photos/310683536/medium.jpeg" alt="Image"></a>
