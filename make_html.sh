@@ -24,9 +24,16 @@ echo "<!DOCTYPE html>
 </head>
 <body>" > "$output_html"
 
-# adding text, opening div for the images below
-echo "<h1>Birds of Palestine</h1>" >> "$output_html"
-echo "<p>All iNaturalist observations of birds in Palestine in the last year. Last updated Sept 4th 2024.</p><br>" >> "$output_html"
+# getting time
+ date=$(date +"%B %d, %Y at %H:%M:%S")
+
+# adding text
+echo "<p>In order for me to write poetry that isn't political<br> 
+I must listen to the birds<br> 
+And in order to hear the birds<br> 
+The warplanes must be silent<br>
+-Marwan Makhoul<br><br>
+All iNaturalist observations of birds in Palestine. Last updated $date</p><br>" >> "$output_html"
 
 # Reading inat data from CSV, skipping empty images and adding links the images
 awk -F ',' 'NR>1 && $14 != "" {print $13 "," $14}' "$csv_file" | while IFS=, read -r url image_url; do
