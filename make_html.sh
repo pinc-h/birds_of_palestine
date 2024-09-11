@@ -1,5 +1,5 @@
 #!/bin/bash
-# Alex Pinch, lasted edited Aug 1st 2024
+# Alex Pinch, created Aug 1st 2024
 # usage: `bash make_html.sh observations-472964.csv`
 
 # check if the CSV file is provided
