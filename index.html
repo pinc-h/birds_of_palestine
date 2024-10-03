@@ -1,8 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Birds of Palestine</title>
     <style>
         .gallery {
@@ -16,11 +14,6 @@
             height: auto;
             display: block;
         }
-        @media (max-width: 600px) { /* for mobile */
-            .gallery a {
-                width: calc(100% - 10px);
-            }
-        }
     </style>
 </head>
 <body>
@@ -31,65 +24,54 @@
         The warplanes must be silent<br>
         -Marwan Makhoul<br><br>
     </p>
-<div class="gallery" id="gallery"></div>
-
+    <div class="gallery" id="gallery"></div>
 <!-- ChatGPT gave I cant be bothered to learn javascript rn -->
 <script>
     fetch('https://raw.githubusercontent.com/pinc-h/birds_of_palestine/refs/heads/main/observations-472964.csv')
         .then(response => response.text())
         .then(csvText => {
-
             const rows = csvText.split('\n').filter(row => row.trim() !== ''); // Split CSV into rows
-
             // Catch error 1
             if (rows.length < 2) {
                 console.error("CSV does not contain enough data.");
                 return;
             }
-
             // Extract header
             const headers = rows[0].split(',');
             const urlIndex = headers.indexOf('url');
             const imgIndex = headers.indexOf('image_url');
-
             // Catch error 2
             if (urlIndex === -1 || imgIndex === -1) { // Check if the required columns exist
                 console.error("Required columns (url or image_url) not found in CSV.");
                 return;
             }
-
             const gallery = document.getElementById('gallery');
-
             // Process each row, skipping the header
             rows.slice(1).forEach((row, rowIndex) => {
                 const columns = row.split(',');
-
                 // Warning 1
                 if (columns.length <= Math.max(urlIndex, imgIndex)) { // Ensure the row has the expected number of columns
                     console.warn(`Row ${rowIndex + 2} does not have enough columns. Skipping row.`);
                     return;
                 }
-
                 // Extract URL and image URL
                 const url = columns[urlIndex].trim();
                 const img = columns[imgIndex].trim();
-
                 // Warning 2
                 if (!url || !img) { // Skip rows with missing data
                     console.warn(`Row ${rowIndex + 2} has missing url or image_url. Skipping row.`);
                     return;
                 }
-
                 // Create the link and image elements
                 const link = document.createElement('a');
                 link.href = url;
                 const image = document.createElement('img');
                 image.src = img;
-
                 // Append image to link and link to gallery
                 link.appendChild(image);
                 gallery.appendChild(link);
             });
+            
         })
         // Catch error 3
         .catch(error => {
