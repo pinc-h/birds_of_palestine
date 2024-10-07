@@ -23,11 +23,12 @@
         And in order to hear the birds<br> 
         The warplanes must be silent<br>
         -Marwan Makhoul<br><br>
+	Last updated Oct. 7 2024<br><br>
     </p>
     <div class="gallery" id="gallery"></div>
 <!-- ChatGPT gave I cant be bothered to learn javascript rn -->
 <script>
-    fetch('https://raw.githubusercontent.com/pinc-h/birds_of_palestine/refs/heads/main/lib/observations-484295.csv')
+    fetch('https://raw.githubusercontent.com/pinc-h/birds_of_palestine/refs/heads/main/lib/observations-484543.csv')
         .then(response => response.text())
         .then(csvText => {
             const rows = csvText.split('\n').filter(row => row.trim() !== ''); // Split CSV into rows
