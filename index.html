@@ -27,7 +27,7 @@
     <div class="gallery" id="gallery"></div>
 <!-- ChatGPT gave I cant be bothered to learn javascript rn -->
 <script>
-    fetch('https://raw.githubusercontent.com/pinc-h/birds_of_palestine/refs/heads/main/observations-472964.csv')
+    fetch('https://raw.githubusercontent.com/pinc-h/birds_of_palestine/refs/heads/main/lib/observations-484295.csv')
         .then(response => response.text())
         .then(csvText => {
             const rows = csvText.split('\n').filter(row => row.trim() !== ''); // Split CSV into rows
